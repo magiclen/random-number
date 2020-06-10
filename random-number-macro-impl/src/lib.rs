@@ -219,3 +219,150 @@ pub fn random(input: TokenStream) -> TokenStream {
 
     random.into()
 }
+
+// TODO -----------------------------
+
+struct RandomFillBuilder {
+    out: Box<Expr>,
+    rb: RandomBuilder,
+}
+
+impl Parse for RandomFillBuilder {
+    fn parse(input: ParseStream) -> Result<Self, syn::Error> {
+        let expr: Expr = input.parse()?;
+
+        let out = Box::from(expr);
+
+        if input.lookahead1().peek(Token!(,)) {
+            input.parse::<Token!(,)>()?;
+        }
+
+        let rb: RandomBuilder = input.parse()?;
+
+        Ok(RandomFillBuilder {
+            out,
+            rb,
+        })
+    }
+}
+
+#[proc_macro_hack]
+pub fn random_fill(input: TokenStream) -> TokenStream {
+    let rfb = parse_macro_input!(input as RandomFillBuilder);
+
+    let out = rfb.out;
+
+    let rb = rfb.rb;
+
+    let random_fill = match rb.min.as_ref() {
+        Some(min) => {
+            match rb.max.as_ref() {
+                Some(max) => {
+                    if rb.exclusive {
+                        match rb.rng.as_ref() {
+                            Some(rng) => {
+                                quote! {
+                                    $crate::random_fill_exclusively_with_rng(&mut #out, #min, #max, &mut #rng)
+                                }
+                            }
+                            None => {
+                                quote! {
+                                    $crate::random_fill_exclusively(&mut #out, #min, #max)
+                                }
+                            }
+                        }
+                    } else if rb.cmp {
+                        match rb.rng.as_ref() {
+                            Some(rng) => {
+                                quote! {
+                                    $crate::random_fill_inclusively_cmp_with_rng(&mut #out, #min, #max, &mut #rng)
+                                }
+                            }
+                            None => {
+                                quote! {
+                                    $crate::random_fill_inclusively_cmp(&mut #out, #min, #max)
+                                }
+                            }
+                        }
+                    } else {
+                        match rb.rng.as_ref() {
+                            Some(rng) => {
+                                quote! {
+                                    $crate::random_fill_inclusively_with_rng(&mut #out, #min, #max, &mut #rng)
+                                }
+                            }
+                            None => {
+                                quote! {
+                                    $crate::random_fill_inclusively(&mut #out, #min, #max)
+                                }
+                            }
+                        }
+                    }
+                }
+                None => {
+                    match rb.rng.as_ref() {
+                        Some(rng) => {
+                            quote! {
+                                $crate::random_fill_at_least_with_rng(&mut #out, #min, &mut #rng)
+                            }
+                        }
+                        None => {
+                            quote! {
+                                $crate::random_fill_at_least(&mut #out, #min)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        None => {
+            match rb.max.as_ref() {
+                Some(max) => {
+                    if rb.exclusive {
+                        match rb.rng.as_ref() {
+                            Some(rng) => {
+                                quote! {
+                                    $crate::random_fill_at_most_exclusively_with_rng(&mut #out, #max, &mut #rng)
+                                }
+                            }
+                            None => {
+                                quote! {
+                                    $crate::random_fill_at_most_exclusively(&mut #out, #max)
+                                }
+                            }
+                        }
+                    } else {
+                        match rb.rng.as_ref() {
+                            Some(rng) => {
+                                quote! {
+                                    $crate::random_fill_at_most_with_rng(&mut #out, #max, &mut #rng)
+                                }
+                            }
+                            None => {
+                                quote! {
+                                    $crate::random_fill_at_most(&mut #out, #max)
+                                }
+                            }
+                        }
+                    }
+                }
+                None => {
+                    match rb.rng.as_ref() {
+                        Some(rng) => {
+                            quote! {
+                                $crate::random_fill_with_rng(&mut #out, &mut #rng)
+                            }
+                        }
+                        None => {
+                            quote! {
+                                $crate::random_fill(&mut #out)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    random_fill.into()
+}
