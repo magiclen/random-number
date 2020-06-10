@@ -108,7 +108,6 @@ extern crate random_number_macro_impl;
 extern crate proc_macro_hack;
 
 mod bounded;
-mod macros;
 mod random_fill_functions;
 mod random_functions;
 
