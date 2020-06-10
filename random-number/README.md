@@ -56,7 +56,7 @@ println!("{}", n); // 12 ~ 20
 
 If the **range** is not literal, for example, a variable, `var_range`, storing an instance that implements the `RangeBounds` trait, the `var_range` variable cannot be used in the `random!` macro.
 
-```rust,ignore
+```rust
 #[macro_use] extern crate random_number;
 
 let var_range = 1..=10;
