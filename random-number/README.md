@@ -75,6 +75,32 @@ let n: u8 = random_number::random_ranged(var_range);
 println!("{}", n); // 1 ~ 10
 ```
 
+### The `random_fill!` Marco
+
+The `random_fill!` marco can be used to fill a slice with random numbers. The usage is like the `random!` macro. Just add a slice as the first argument when using the `random_fill!` macro.
+
+```rust
+#[macro_use] extern crate random_number;
+
+let mut a = [0i8; 32];
+random_fill!(a, -2..=12);
+
+println!("{:?}", a);
+```
+
+### The `random_fill_ranged` Function
+
+```rust
+extern crate random_number;
+
+let var_range = 1..=10;
+
+let mut a = [0u8; 32];
+random_number::random_fill_ranged(&mut a, var_range);
+
+println!("{:?}", a);
+```
+
 ## Crates.io
 
 https://crates.io/crates/random-number
