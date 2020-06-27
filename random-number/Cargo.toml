@@ -1,6 +1,6 @@
 [package]
 name = "random-number"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2018"
 repository = "https://github.com/magiclen/random-number"
@@ -10,6 +10,7 @@ categories = ["no-std", "rust-patterns"]
 description= "Generate random numbers quickly."
 readme = "README.md"
 license = "MIT"
+include = ["src/**/*", "Cargo.toml"]
 
 [badges.travis-ci]
 repository = "magiclen/random-number"

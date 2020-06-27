@@ -10,6 +10,7 @@ categories = ["no-std", "rust-patterns"]
 description= "Generate random numbers quickly."
 readme = "README.md"
 license = "MIT"
+include = ["src/**/*", "Cargo.toml"]
 
 [badges.travis-ci]
 repository = "magiclen/random-number"
