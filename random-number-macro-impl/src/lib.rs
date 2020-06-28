@@ -262,12 +262,12 @@ pub fn random_fill(input: TokenStream) -> TokenStream {
                         match rb.rng.as_ref() {
                             Some(rng) => {
                                 quote! {
-                                    $crate::random_fill_exclusively_with_rng(&mut #out, #min, #max, &mut #rng)
+                                    $crate::random_fill_exclusively_with_rng(#out.as_mut(), #min, #max, &mut #rng)
                                 }
                             }
                             None => {
                                 quote! {
-                                    $crate::random_fill_exclusively(&mut #out, #min, #max)
+                                    $crate::random_fill_exclusively(#out.as_mut(), #min, #max)
                                 }
                             }
                         }
@@ -275,12 +275,12 @@ pub fn random_fill(input: TokenStream) -> TokenStream {
                         match rb.rng.as_ref() {
                             Some(rng) => {
                                 quote! {
-                                    $crate::random_fill_inclusively_cmp_with_rng(&mut #out, #min, #max, &mut #rng)
+                                    $crate::random_fill_inclusively_cmp_with_rng(#out.as_mut(), #min, #max, &mut #rng)
                                 }
                             }
                             None => {
                                 quote! {
-                                    $crate::random_fill_inclusively_cmp(&mut #out, #min, #max)
+                                    $crate::random_fill_inclusively_cmp(#out.as_mut(), #min, #max)
                                 }
                             }
                         }
@@ -288,12 +288,12 @@ pub fn random_fill(input: TokenStream) -> TokenStream {
                         match rb.rng.as_ref() {
                             Some(rng) => {
                                 quote! {
-                                    $crate::random_fill_inclusively_with_rng(&mut #out, #min, #max, &mut #rng)
+                                    $crate::random_fill_inclusively_with_rng(#out.as_mut(), #min, #max, &mut #rng)
                                 }
                             }
                             None => {
                                 quote! {
-                                    $crate::random_fill_inclusively(&mut #out, #min, #max)
+                                    $crate::random_fill_inclusively(#out.as_mut(), #min, #max)
                                 }
                             }
                         }
@@ -303,12 +303,12 @@ pub fn random_fill(input: TokenStream) -> TokenStream {
                     match rb.rng.as_ref() {
                         Some(rng) => {
                             quote! {
-                                $crate::random_fill_at_least_with_rng(&mut #out, #min, &mut #rng)
+                                $crate::random_fill_at_least_with_rng(#out.as_mut(), #min, &mut #rng)
                             }
                         }
                         None => {
                             quote! {
-                                $crate::random_fill_at_least(&mut #out, #min)
+                                $crate::random_fill_at_least(#out.as_mut(), #min)
                             }
                         }
                     }
@@ -322,12 +322,12 @@ pub fn random_fill(input: TokenStream) -> TokenStream {
                         match rb.rng.as_ref() {
                             Some(rng) => {
                                 quote! {
-                                    $crate::random_fill_at_most_exclusively_with_rng(&mut #out, #max, &mut #rng)
+                                    $crate::random_fill_at_most_exclusively_with_rng(#out.as_mut(), #max, &mut #rng)
                                 }
                             }
                             None => {
                                 quote! {
-                                    $crate::random_fill_at_most_exclusively(&mut #out, #max)
+                                    $crate::random_fill_at_most_exclusively(#out.as_mut(), #max)
                                 }
                             }
                         }
@@ -335,12 +335,12 @@ pub fn random_fill(input: TokenStream) -> TokenStream {
                         match rb.rng.as_ref() {
                             Some(rng) => {
                                 quote! {
-                                    $crate::random_fill_at_most_with_rng(&mut #out, #max, &mut #rng)
+                                    $crate::random_fill_at_most_with_rng(#out.as_mut(), #max, &mut #rng)
                                 }
                             }
                             None => {
                                 quote! {
-                                    $crate::random_fill_at_most(&mut #out, #max)
+                                    $crate::random_fill_at_most(#out.as_mut(), #max)
                                 }
                             }
                         }
@@ -350,12 +350,12 @@ pub fn random_fill(input: TokenStream) -> TokenStream {
                     match rb.rng.as_ref() {
                         Some(rng) => {
                             quote! {
-                                $crate::random_fill_with_rng(&mut #out, &mut #rng)
+                                $crate::random_fill_with_rng(#out.as_mut(), &mut #rng)
                             }
                         }
                         None => {
                             quote! {
-                                $crate::random_fill(&mut #out)
+                                $crate::random_fill(#out.as_mut())
                             }
                         }
                     }
