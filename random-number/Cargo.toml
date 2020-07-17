@@ -7,7 +7,7 @@ repository = "https://github.com/magiclen/random-number"
 homepage = "https://magiclen.org/random-number"
 keywords = ["random", "integer", "number", "inclusive", "fill"]
 categories = ["no-std", "rust-patterns"]
-description= "Generate random numbers quickly."
+description = "Generate random numbers quickly."
 readme = "README.md"
 license = "MIT"
 include = ["src/**/*", "Cargo.toml"]
@@ -17,7 +17,7 @@ repository = "magiclen/random-number"
 branch = "master"
 
 [dependencies]
-random-number-macro-impl = {version = "0.1", path = "../random-number-macro-impl"}
+random-number-macro-impl = { version = "0.1", path = "../random-number-macro-impl" }
 
 proc-macro-hack = "0.5"
 rand = "0.7"
