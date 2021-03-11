@@ -1,6 +1,6 @@
 [package]
 name = "random-number"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2018"
 repository = "https://github.com/magiclen/random-number"
@@ -20,4 +20,4 @@ branch = "master"
 random-number-macro-impl = { version = "0.1", path = "../random-number-macro-impl" }
 
 proc-macro-hack = "0.5"
-rand = "0.7"
+rand = "0.8"

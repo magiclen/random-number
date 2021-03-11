@@ -34,8 +34,10 @@ pub fn random_fill_exclusively_with_rng<
     max_exclusive: B2,
     rng: &mut T,
 ) {
+    let uniform = Uniform::new(min, max_exclusive);
+
     for x in out.iter_mut() {
-        *x = rng.gen_range(min.borrow(), max_exclusive.borrow());
+        *x = uniform.sample(rng);
     }
 }
 

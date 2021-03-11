@@ -32,7 +32,9 @@ pub fn random_exclusively_with_rng<
     max_exclusive: B2,
     rng: &mut T,
 ) -> X {
-    rng.gen_range(min, max_exclusive)
+    let uniform = Uniform::new(min, max_exclusive);
+
+    uniform.sample(rng)
 }
 
 /// Generate a random value in the range [`min`, `max_inclusive`] with a new lazily-initialized thread-local random number generator.
