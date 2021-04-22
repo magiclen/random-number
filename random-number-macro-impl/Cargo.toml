@@ -1,6 +1,6 @@
 [package]
 name = "random-number-macro-impl"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2018"
 repository = "https://github.com/magiclen/random-number"
@@ -11,10 +11,6 @@ description = "Generate random numbers quickly."
 readme = "README.md"
 license = "MIT"
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE"]
-
-[badges.travis-ci]
-repository = "magiclen/random-number"
-branch = "master"
 
 [lib]
 proc_macro = true

@@ -1,7 +1,7 @@
 Random Number Macro Impl
 ====================
 
-[![Build Status](https://travis-ci.org/magiclen/random-number.svg?branch=master)](https://travis-ci.org/magiclen/random-number)
+[![CI](https://github.com/magiclen/random-number/actions/workflows/ci.yml/badge.svg)](https://github.com/magiclen/random-number/actions/workflows/ci.yml)
 
 See [`random-number`](https://crates.io/crates/random-number). 
 
