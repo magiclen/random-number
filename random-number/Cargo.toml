@@ -1,12 +1,12 @@
 [package]
 name = "random-number"
-version = "0.1.5"
+version = "0.1.6"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2018"
 repository = "https://github.com/magiclen/random-number"
 homepage = "https://magiclen.org/random-number"
 keywords = ["random", "integer", "number", "inclusive", "fill"]
-categories = ["no-std", "rust-patterns"]
+categories = ["rust-patterns"]
 description = "Generate random numbers quickly."
 readme = "README.md"
 license = "MIT"

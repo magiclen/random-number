@@ -99,7 +99,6 @@ random_number::random_fill_ranged(&mut a, var_range);
 println!("{:?}", a);
 ```
 */
-#![no_std]
 pub extern crate rand;
 
 extern crate random_number_macro_impl;

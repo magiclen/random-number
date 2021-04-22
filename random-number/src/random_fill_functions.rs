@@ -1,5 +1,5 @@
-use core::cmp::Ordering;
-use core::ops::{Bound, RangeBounds};
+use std::cmp::Ordering;
+use std::ops::{Bound, RangeBounds};
 
 use crate::rand::distributions::uniform::{SampleBorrow, SampleUniform, Uniform};
 use crate::rand::distributions::Distribution;
