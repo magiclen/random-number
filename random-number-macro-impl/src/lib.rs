@@ -1,3 +1,4 @@
+#[macro_use]
 extern crate proc_macro_hack;
 
 #[macro_use]
@@ -9,7 +10,6 @@ extern crate quote;
 extern crate proc_macro;
 
 use proc_macro::TokenStream;
-use proc_macro_hack::proc_macro_hack;
 use syn::parse::{Parse, ParseStream};
 use syn::{Expr, RangeLimits};
 
