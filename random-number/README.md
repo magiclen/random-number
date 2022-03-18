@@ -8,7 +8,7 @@ Generate random numbers quickly.
 ### The `random!` Marco
 
 ```rust
-#[macro_use] extern crate random_number;
+use random_number::random;
 
 let n: u8 = random!();
 println!("{}", n); // 0 ~ 255
@@ -38,7 +38,7 @@ println!("{}", n); // 12 ~ 20
 The random number generator can be reused by adding it to the `random!` macro as the last argument.
 
 ```rust
-#[macro_use] extern crate random_number;
+use random_number::random;
 
 let mut rng = random_number::rand::thread_rng();
 
@@ -57,18 +57,14 @@ println!("{}", n); // 12 ~ 20
 If the **range** is not literal, for example, a variable, `var_range`, storing an instance that implements the `RangeBounds` trait, the `var_range` variable cannot be used in the `random!` macro.
 
 ```rust
-#[macro_use] extern crate random_number;
-
 let var_range = 1..=10;
 
-let n: u8 = random!(var_range); // compile error
+let n: u8 = random_number::random!(var_range); // compile error
 ```
 
 In this case, use the `random_ranged` function instead.
 
 ```rust
-extern crate random_number;
-
 let var_range = 1..=10;
 
 let n: u8 = random_number::random_ranged(var_range);
@@ -80,10 +76,8 @@ println!("{}", n); // 1 ~ 10
 The `random_fill!` marco can be used to fill a slice with random numbers. The usage is like the `random!` macro. Just add a slice as the first argument when using the `random_fill!` macro.
 
 ```rust
-#[macro_use] extern crate random_number;
-
 let mut a = [0i8; 32];
-random_fill!(a, -2..=12);
+random_number::random_fill!(a, -2..=12);
 
 println!("{:?}", a);
 ```
@@ -91,8 +85,6 @@ println!("{:?}", a);
 ### The `random_fill_ranged` Function
 
 ```rust
-extern crate random_number;
-
 let var_range = 1..=10;
 
 let mut a = [0u8; 32];

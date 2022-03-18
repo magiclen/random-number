@@ -1,17 +1,8 @@
-#[macro_use]
-extern crate proc_macro_hack;
-
-#[macro_use]
-extern crate syn;
-
-#[macro_use]
-extern crate quote;
-
-extern crate proc_macro;
-
 use proc_macro::TokenStream;
+use proc_macro_hack::proc_macro_hack;
+use quote::quote;
 use syn::parse::{Parse, ParseStream};
-use syn::{Expr, RangeLimits};
+use syn::{parse_macro_input, Expr, RangeLimits, Token};
 
 struct RandomBuilder {
     min: Option<Box<Expr>>,
@@ -246,7 +237,7 @@ impl Parse for RandomFillBuilder {
     }
 }
 
-#[proc_macro_hack]
+#[proc_macro_hack::proc_macro_hack]
 pub fn random_fill(input: TokenStream) -> TokenStream {
     let rfb = parse_macro_input!(input as RandomFillBuilder);
 
