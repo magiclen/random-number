@@ -9,12 +9,12 @@ macro_rules! bounded_impl {
         impl Bounded for $t {
             #[inline]
             fn max_value() -> Self {
-                $t::max_value()
+                $t::MAX
             }
 
             #[inline]
             fn min_value() -> Self {
-                $t::min_value()
+                $t::MIN
             }
         }
     };
