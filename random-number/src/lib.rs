@@ -98,11 +98,9 @@ mod random_fill_functions;
 mod random_functions;
 
 pub use bounded::Bounded;
+use proc_macro_hack::proc_macro_hack;
 pub use random_fill_functions::*;
 pub use random_functions::*;
-
-use proc_macro_hack::proc_macro_hack;
-
 /**
 Generate a random number.
 
@@ -254,7 +252,6 @@ assert!(12 <= i && i <= 20);
 */
 #[proc_macro_hack]
 pub use random_number_macro_impl::random;
-
 /**
 Generate random numbers.
 

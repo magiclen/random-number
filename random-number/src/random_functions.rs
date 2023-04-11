@@ -1,11 +1,18 @@
-use std::cmp::Ordering;
-use std::ops::{Bound, RangeBounds};
+use std::{
+    cmp::Ordering,
+    ops::{Bound, RangeBounds},
+};
 
-use crate::rand::distributions::uniform::{SampleBorrow, SampleUniform, Uniform};
-use crate::rand::distributions::Distribution;
-use crate::rand::{thread_rng, Rng};
-
-use crate::Bounded;
+use crate::{
+    rand::{
+        distributions::{
+            uniform::{SampleBorrow, SampleUniform, Uniform},
+            Distribution,
+        },
+        thread_rng, Rng,
+    },
+    Bounded,
+};
 
 /// Generate a random value in the range [`min`, `max_exclusive`) with a new lazily-initialized thread-local random number generator.
 ///
@@ -180,26 +187,18 @@ pub fn random_ranged_with_rng<X: SampleUniform + Bounded, R: RangeBounds<X>, T: 
     match start {
         Bound::Excluded(_) => {
             panic!("random_ranged_with_rng called with a start bound which is exclusive")
-        }
-        Bound::Included(min) => {
-            match end {
-                Bound::Excluded(max_exclusive) => {
-                    random_exclusively_with_rng(min, max_exclusive, rng)
-                }
-                Bound::Included(max_inclusive) => {
-                    random_inclusively_with_rng(min, max_inclusive, rng)
-                }
-                Bound::Unbounded => random_at_least_with_rng(min, rng),
-            }
-        }
-        Bound::Unbounded => {
-            match end {
-                Bound::Excluded(max_exclusive) => {
-                    random_at_most_exclusively_with_rng(max_exclusive, rng)
-                }
-                Bound::Included(max_inclusive) => random_at_most_with_rng(max_inclusive, rng),
-                Bound::Unbounded => random_with_rng(rng),
-            }
-        }
+        },
+        Bound::Included(min) => match end {
+            Bound::Excluded(max_exclusive) => random_exclusively_with_rng(min, max_exclusive, rng),
+            Bound::Included(max_inclusive) => random_inclusively_with_rng(min, max_inclusive, rng),
+            Bound::Unbounded => random_at_least_with_rng(min, rng),
+        },
+        Bound::Unbounded => match end {
+            Bound::Excluded(max_exclusive) => {
+                random_at_most_exclusively_with_rng(max_exclusive, rng)
+            },
+            Bound::Included(max_inclusive) => random_at_most_with_rng(max_inclusive, rng),
+            Bound::Unbounded => random_with_rng(rng),
+        },
     }
 }

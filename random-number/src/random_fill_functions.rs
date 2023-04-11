@@ -1,11 +1,18 @@
-use std::cmp::Ordering;
-use std::ops::{Bound, RangeBounds};
+use std::{
+    cmp::Ordering,
+    ops::{Bound, RangeBounds},
+};
 
-use crate::rand::distributions::uniform::{SampleBorrow, SampleUniform, Uniform};
-use crate::rand::distributions::Distribution;
-use crate::rand::{thread_rng, Rng};
-
-use crate::Bounded;
+use crate::{
+    rand::{
+        distributions::{
+            uniform::{SampleBorrow, SampleUniform, Uniform},
+            Distribution,
+        },
+        thread_rng, Rng,
+    },
+    Bounded,
+};
 
 /// Generate random values in the range [`min`, `max_exclusive`) with a new lazily-initialized thread-local random number generator.
 ///
@@ -106,7 +113,7 @@ pub fn random_fill_inclusively_cmp_with_rng<
             for x in out.iter_mut() {
                 *x = a.borrow().clone();
             }
-        }
+        },
         Ordering::Less => random_fill_inclusively_with_rng(out, a, b, rng),
     }
 }
@@ -208,28 +215,22 @@ pub fn random_fill_ranged_with_rng<X: SampleUniform + Bounded, R: RangeBounds<X>
     match start {
         Bound::Excluded(_) => {
             panic!("random_fill_ranged_with_rng called with a start bound which is exclusive")
-        }
-        Bound::Included(min) => {
-            match end {
-                Bound::Excluded(max_exclusive) => {
-                    random_fill_exclusively_with_rng(out, min, max_exclusive, rng)
-                }
-                Bound::Included(max_inclusive) => {
-                    random_fill_inclusively_with_rng(out, min, max_inclusive, rng)
-                }
-                Bound::Unbounded => random_fill_at_least_with_rng(out, min, rng),
-            }
-        }
-        Bound::Unbounded => {
-            match end {
-                Bound::Excluded(max_exclusive) => {
-                    random_fill_at_most_exclusively_with_rng(out, max_exclusive, rng)
-                }
-                Bound::Included(max_inclusive) => {
-                    random_fill_at_most_with_rng(out, max_inclusive, rng)
-                }
-                Bound::Unbounded => random_fill_with_rng(out, rng),
-            }
-        }
+        },
+        Bound::Included(min) => match end {
+            Bound::Excluded(max_exclusive) => {
+                random_fill_exclusively_with_rng(out, min, max_exclusive, rng)
+            },
+            Bound::Included(max_inclusive) => {
+                random_fill_inclusively_with_rng(out, min, max_inclusive, rng)
+            },
+            Bound::Unbounded => random_fill_at_least_with_rng(out, min, rng),
+        },
+        Bound::Unbounded => match end {
+            Bound::Excluded(max_exclusive) => {
+                random_fill_at_most_exclusively_with_rng(out, max_exclusive, rng)
+            },
+            Bound::Included(max_inclusive) => random_fill_at_most_with_rng(out, max_inclusive, rng),
+            Bound::Unbounded => random_fill_with_rng(out, rng),
+        },
     }
 }
