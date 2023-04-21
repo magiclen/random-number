@@ -33,8 +33,8 @@ impl Parse for RandomBuilder {
                     RangeLimits::Closed(_) => false,
                 };
 
-                let min = range.from;
-                let max = range.to;
+                let min = range.start;
+                let max = range.end;
 
                 if input.is_empty() {
                     Ok(RandomBuilder {
