@@ -107,6 +107,7 @@ Generate a random number.
 ## Examples
 
 ```rust
+# #![allow(unused_comparisons)]
 let f: f64 = random_number::random!();
 
 assert!(0.0 <= f && f <= 1.0);
@@ -117,6 +118,7 @@ assert!(0 <= i && i <= 255);
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 use random_number::rand;
 
 let mut thread_rng = rand::thread_rng();
@@ -131,6 +133,7 @@ assert!(0 <= i && i <= 255);
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 let i: u8 = random_number::random!(..=10);
 
 assert!(0 <= i && i <= 10);
@@ -141,6 +144,7 @@ assert!(-128 <= i && i <= 0);
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 use random_number::rand;
 
 let mut thread_rng = rand::thread_rng();
@@ -155,6 +159,7 @@ assert!(-128 <= i && i <= 0);
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 let i: u8 = random_number::random!(10..);
 
 assert!(10 <= i && i <= 255);
@@ -165,6 +170,7 @@ assert!(0 <= i && i <= 127);
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 use random_number::rand;
 
 let mut thread_rng = rand::thread_rng();
@@ -179,6 +185,7 @@ assert!(0 <= i && i <= 127);
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 let i: u8 = random_number::random!(..10);
 
 assert!(0 <= i && i <= 9);
@@ -189,6 +196,7 @@ assert!(-128 <= i && i <= -1);
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 use random_number::rand;
 
 let mut thread_rng = rand::thread_rng();
@@ -258,6 +266,7 @@ Generate random numbers.
 ## Examples
 
 ```rust
+# #![allow(unused_comparisons)]
 let mut f = [0f64; 100];
 random_number::random_fill!(f);
 
@@ -274,6 +283,7 @@ for i in i.iter().copied() {
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 use random_number::rand;
 
 let mut thread_rng = rand::thread_rng();
@@ -294,6 +304,7 @@ for i in i.iter().copied() {
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 let mut i = [0u8; 100];
 random_number::random_fill!(i, ..=10);
 
@@ -310,6 +321,7 @@ for i in i.iter().copied() {
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 use random_number::rand;
 
 let mut thread_rng = rand::thread_rng();
@@ -330,6 +342,7 @@ for i in i.iter().copied() {
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 let mut i = [0u8; 100];
 random_number::random_fill!(i, 10..);
 
@@ -346,6 +359,7 @@ for i in i.iter().copied() {
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 use random_number::rand;
 
 let mut thread_rng = rand::thread_rng();
@@ -366,6 +380,7 @@ for i in i.iter().copied() {
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 let mut i = [0u8; 100];
 random_number::random_fill!(i, ..10);
 
@@ -382,6 +397,7 @@ for i in i.iter().copied() {
 ```
 
 ```rust
+# #![allow(unused_comparisons)]
 use random_number::rand;
 
 let mut thread_rng = rand::thread_rng();
